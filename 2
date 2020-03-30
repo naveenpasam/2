@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+int data;
+struct node* leftlink;
+struct node* rightlink;
+}*root=NULL;
+void inorder(struct node *root)
+{
+if(root==NULL)
+return;
+inorder(root->leftlink);
+printf("%d ",root->data);
+inorder(root->rightlink);
+}
+struct node* insert(struct node *root,int data)
+{
+if(root==NULL)
+{
+root=(struct node*)malloc(sizeof(struct node));
+root->leftlink=root->rightlink=NULL;
+root->data=data;
+}
+else if(data<root->data)
+{
+root->leftlink=insert(root->leftlink,data);
+}
+else if(data>root->data)
+{
+root->rightlink=insert(root->rightlink,data);
+}
+return root;
+}
+int main()
+{
+int n,i,data,s;
+printf("enter the no of elements of tree");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter the element of tree");
+scanf("%d",&data);
+root=insert(root,data);
+}
+printf("preorder :");
+inorder(root);
+printf("\n");
+}
+Problem 3:
+#include<stdio.h>
+main()
+{
+int a[20],i,n,s,flag=0;
+printf("enter the no elements of array");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter %d element of array :",i+1);
+scanf("%d",&a[i]);
+}
+printf("enter the element to search:");
+scanf("%d",&s);
+for(i=0;i<n;i++)
+{
+if(a[i]==s)
+{
+printf("element found");
+flag=1;
+}
+}
+if(flag==0)
+printf("element not found");
+}
